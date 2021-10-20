@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import id.co.abdialidrus.simplenote.R
 import id.co.abdialidrus.simplenote.business.domain.util.StateMessageCallback
 import id.co.abdialidrus.simplenote.databinding.FragmentNoteListBinding
 import id.co.abdialidrus.simplenote.presentation.note.BaseNoteFragment
@@ -32,6 +34,10 @@ class NoteListFragment : BaseNoteFragment() {
 
         subscribeObservers()
         viewModel.onTriggerEvent(NoteListEvent.GetNotes)
+
+        binding.fabCreateNote.setOnClickListener {
+            findNavController().navigate(R.id.action_noteListFragment_to_createNoteFragment)
+        }
     }
 
     private fun subscribeObservers() {
@@ -48,11 +54,14 @@ class NoteListFragment : BaseNoteFragment() {
                     }
                 })
 
-            Log.d(TAG, "subscribeObservers: cached notes -> ${state.noteList}")
-
-//            recyclerAdapter?.apply {
+            if (state.noteList.isEmpty()){
+                Log.d(TAG, "subscribeObservers: cached notes -> ${state.noteList}")
+            } else {
+                //            recyclerAdapter?.apply {
 //                submitList(blogList = state.blogList)
 //            }
+            }
+
         })
     }
 

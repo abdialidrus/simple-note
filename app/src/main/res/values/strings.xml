@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Simple Note</string>
 
+    <string name="fragment_title_create_note">Create New Note</string>
+
     <string name="text_error">Error</string>
     <string name="text_success">Success</string>
     <string name="text_info">Info</string>
