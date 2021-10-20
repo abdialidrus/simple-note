@@ -1,4 +1,4 @@
-package id.co.abdialidrus.simplenote.business.interactor
+package id.co.abdialidrus.simplenote.business.interactor.category
 
 class CreateCategory {
 }
