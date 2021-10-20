@@ -13,7 +13,7 @@ interface NoteDao {
 
     @Query("""
         SELECT * FROM notes  
-        ORDER BY id DESC
+        ORDER BY id ASC
         """)
     suspend fun getAllNotes(): List<NoteEntity>
 
