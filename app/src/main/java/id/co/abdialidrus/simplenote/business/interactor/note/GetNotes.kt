@@ -5,4 +5,9 @@ import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteDao
 class GetNotes(
     private val noteDao: NoteDao
 ) {
+
+    fun execute(){
+
+    }
+
 }
