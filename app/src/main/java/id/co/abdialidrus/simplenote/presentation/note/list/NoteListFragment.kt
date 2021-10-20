@@ -54,8 +54,10 @@ class NoteListFragment : BaseNoteFragment() {
                     }
                 })
 
+            Log.d(TAG, "subscribeObservers: cached notes -> ${state.noteList}")
+
             if (state.noteList.isEmpty()){
-                Log.d(TAG, "subscribeObservers: cached notes -> ${state.noteList}")
+
             } else {
                 //            recyclerAdapter?.apply {
 //                submitList(blogList = state.blogList)

@@ -7,21 +7,22 @@ import androidx.room.PrimaryKey
 import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryEntity
 
 @Entity(
-    tableName = "notes",
-    foreignKeys = [
-        ForeignKey(
-            entity = CategoryEntity::class,
-            parentColumns = ["id"],
-            childColumns = ["category_id"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+    tableName = "notes"
+//    ,
+//    foreignKeys = [
+//        ForeignKey(
+//            entity = CategoryEntity::class,
+//            parentColumns = ["id"],
+//            childColumns = ["category_id"],
+//            onDelete = ForeignKey.CASCADE
+//        )
+//    ]
 )
 data class NoteEntity (
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int = 0,
 
     @ColumnInfo(name = "title")
     val title: String,
