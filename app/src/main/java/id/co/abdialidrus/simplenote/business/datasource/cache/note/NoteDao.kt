@@ -17,4 +17,9 @@ interface NoteDao {
         """)
     suspend fun getAllNotes(): List<NoteEntity>
 
+    @Query("""
+        SELECT * FROM notes 
+        WHERE id = :id
+        """)
+    suspend fun getNoteById(id: Int): NoteEntity?
 }

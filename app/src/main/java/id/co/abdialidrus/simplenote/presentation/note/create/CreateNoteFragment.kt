@@ -105,7 +105,8 @@ class CreateNoteFragment: BaseNoteFragment() {
                 body = state.body
             )
             if (state.onCreateSuccess) {
-                findNavController().popBackStack(R.id.noteListFragment, false)
+                findNavController().popBackStack()
+                //findNavController().popBackStack(R.id.noteListFragment, false)
             }
         })
     }
@@ -148,6 +149,7 @@ class CreateNoteFragment: BaseNoteFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.onTriggerEvent(CreateNoteEvent.ClearNoteAttributes)
         _binding = null
     }
 

@@ -2,6 +2,7 @@ package id.co.abdialidrus.simplenote.presentation.note.create
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,6 +10,7 @@ import id.co.abdialidrus.simplenote.business.domain.util.StateMessage
 import id.co.abdialidrus.simplenote.business.domain.util.UIComponentType
 import id.co.abdialidrus.simplenote.business.domain.util.doesMessageAlreadyExistInQueue
 import id.co.abdialidrus.simplenote.business.interactor.note.CreateNote
+import id.co.abdialidrus.simplenote.business.interactor.note.GetNote
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -17,15 +19,26 @@ import javax.inject.Inject
 class CreateNoteViewModel
 @Inject
 constructor(
-    private val createNote: CreateNote
+    private val createNote: CreateNote,
+    private val getNote: GetNote,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val TAG: String = "AppDebug"
 
     val state: MutableLiveData<CreateNoteState> = MutableLiveData(CreateNoteState())
 
+    init {
+        savedStateHandle.get<Int>("noteId")?.let { noteId ->
+            onTriggerEvent(CreateNoteEvent.GetNote(noteId))
+        }
+    }
+
     fun onTriggerEvent(event: CreateNoteEvent) {
         when (event) {
+            is  CreateNoteEvent.GetNote -> {
+                getNote(event.id)
+            }
             is CreateNoteEvent.OnUpdateTitle -> {
                 onUpdateTitle(event.title)
             }
@@ -37,6 +50,9 @@ constructor(
             }
             is CreateNoteEvent.OnCreateSuccess -> {
                 onCreateSuccess()
+            }
+            is CreateNoteEvent.ClearNoteAttributes -> {
+                clearNewNoteFields()
             }
             is CreateNoteEvent.Error -> {
                 appendToMessageQueue(event.stateMessage)
@@ -70,6 +86,25 @@ constructor(
     private fun clearNewNoteFields() {
         onUpdateTitle("")
         onUpdateBody("")
+    }
+
+    private fun getNote(id: Int){
+        clearNewNoteFields()
+
+        state.value?.let { state ->
+            getNote.execute(id).onEach { dataState ->
+                this.state.value = state.copy(isLoading = dataState.loading)
+
+                dataState.data?.let { note ->
+                    this.state.value = state.copy(title = note.title, body = note.body)
+                    //callback.done()
+                }
+
+                dataState.stateMessage?.let { stateMessage ->
+                    appendToMessageQueue(stateMessage)
+                }
+            }.launchIn(viewModelScope)
+        }
     }
 
     private fun createNote() {

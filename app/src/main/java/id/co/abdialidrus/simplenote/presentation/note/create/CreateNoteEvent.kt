@@ -5,21 +5,24 @@ import id.co.abdialidrus.simplenote.business.domain.util.StateMessage
 
 sealed class CreateNoteEvent {
 
-    object CreateNote: CreateNoteEvent()
+    data class GetNote(val id: Int) : CreateNoteEvent()
+
+    object CreateNote : CreateNoteEvent()
 
     data class OnUpdateTitle(
         val title: String,
-    ): CreateNoteEvent()
+    ) : CreateNoteEvent()
 
     data class OnUpdateBody(
         val body: String,
-    ): CreateNoteEvent()
+    ) : CreateNoteEvent()
 
+    object ClearNoteAttributes : CreateNoteEvent()
 
-    object OnCreateSuccess: CreateNoteEvent()
+    object OnCreateSuccess : CreateNoteEvent()
 
-    data class Error(val stateMessage: StateMessage): CreateNoteEvent()
+    data class Error(val stateMessage: StateMessage) : CreateNoteEvent()
 
-    object OnRemoveHeadFromQueue: CreateNoteEvent()
+    object OnRemoveHeadFromQueue : CreateNoteEvent()
 
 }

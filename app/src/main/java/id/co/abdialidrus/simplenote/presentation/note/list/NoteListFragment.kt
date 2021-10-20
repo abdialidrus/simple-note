@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -104,7 +105,8 @@ class NoteListFragment : BaseNoteFragment(),
     }
 
     override fun onItemSelected(position: Int, item: Note) {
-
+        val bundle = bundleOf("noteId" to item.id)
+        findNavController().navigate(R.id.action_noteListFragment_to_createNoteFragment, bundle)
     }
 
 }

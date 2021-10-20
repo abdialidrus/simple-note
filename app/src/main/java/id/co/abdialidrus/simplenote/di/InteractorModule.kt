@@ -8,6 +8,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteDao
 import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteEntityMapper
 import id.co.abdialidrus.simplenote.business.interactor.note.CreateNote
+import id.co.abdialidrus.simplenote.business.interactor.note.GetNote
 import id.co.abdialidrus.simplenote.business.interactor.note.GetNotes
 
 @Module
@@ -21,6 +22,18 @@ object InteractorModule {
         entityMapper: NoteEntityMapper
     ): GetNotes {
         return GetNotes(
+            noteDao,
+            entityMapper
+        )
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetNote(
+        noteDao: NoteDao,
+        entityMapper: NoteEntityMapper
+    ): GetNote {
+        return GetNote(
             noteDao,
             entityMapper
         )
