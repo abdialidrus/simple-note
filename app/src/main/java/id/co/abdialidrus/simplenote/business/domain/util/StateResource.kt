@@ -27,3 +27,25 @@ sealed class MessageType{
 
     class None: MessageType()
 }
+
+fun StateMessage.doesMessageAlreadyExistInQueue(
+    queue: Queue<StateMessage>,
+): Boolean {
+    for(item in queue.items){
+        if(item.response.message == response.message){
+            return true
+        }
+        if(item.response.messageType == response.messageType){
+            return true
+        }
+        if(item.response.uiComponentType == response.uiComponentType){
+            return true
+        }
+    }
+    return false
+}
+
+interface StateMessageCallback{
+
+    fun removeMessageFromStack()
+}
