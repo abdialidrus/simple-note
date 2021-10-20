@@ -7,7 +7,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.co.abdialidrus.simplenote.business.datasource.cache.AppDatabase
 import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryEntityMapper
 import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteEntityMapper
 import id.co.abdialidrus.simplenote.presentation.BaseApplication
 import javax.inject.Singleton
 
@@ -34,6 +36,18 @@ object CacheModule {
     @Provides
     fun provideCategoryDao(db: AppDatabase): CategoryDao {
         return db.categoryDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCacheNoteMapper(): NoteEntityMapper {
+        return NoteEntityMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCacheCategoryMapper(): CategoryEntityMapper {
+        return CategoryEntityMapper()
     }
 
 }
