@@ -2,6 +2,10 @@ package id.co.abdialidrus.simplenote.business.datasource.cache
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryEntity
+import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteEntity
 
 @Database(
     entities = [

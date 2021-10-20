@@ -1,4 +1,4 @@
-package id.co.abdialidrus.simplenote.business.datasource.cache
+package id.co.abdialidrus.simplenote.business.datasource.cache.category
 
 import androidx.room.Dao
 import androidx.room.Insert

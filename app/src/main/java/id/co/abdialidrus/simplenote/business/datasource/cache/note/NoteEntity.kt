@@ -1,9 +1,10 @@
-package id.co.abdialidrus.simplenote.business.datasource.cache
+package id.co.abdialidrus.simplenote.business.datasource.cache.note
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryEntity
 
 @Entity(
     tableName = "notes",

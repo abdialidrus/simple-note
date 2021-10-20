@@ -6,8 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.co.abdialidrus.simplenote.business.datasource.cache.AppDatabase
-import id.co.abdialidrus.simplenote.business.datasource.cache.CategoryDao
-import id.co.abdialidrus.simplenote.business.datasource.cache.NoteDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.category.CategoryDao
+import id.co.abdialidrus.simplenote.business.datasource.cache.note.NoteDao
 import id.co.abdialidrus.simplenote.presentation.BaseApplication
 import javax.inject.Singleton
 
