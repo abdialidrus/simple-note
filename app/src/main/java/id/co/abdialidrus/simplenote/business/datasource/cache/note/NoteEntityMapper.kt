@@ -1,6 +1,6 @@
 package id.co.abdialidrus.simplenote.business.datasource.cache.note
 
-import id.co.abdialidrus.simplenote.business.domain.Note
+import id.co.abdialidrus.simplenote.business.domain.model.Note
 import id.co.abdialidrus.simplenote.business.domain.util.DomainMapper
 
 class NoteEntityMapper : DomainMapper<NoteEntity, Note> {

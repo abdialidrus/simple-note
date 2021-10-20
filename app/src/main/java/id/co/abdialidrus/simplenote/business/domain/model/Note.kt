@@ -1,4 +1,4 @@
-package id.co.abdialidrus.simplenote.business.domain
+package id.co.abdialidrus.simplenote.business.domain.model
 
 data class Note (
     val id: Int,

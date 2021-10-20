@@ -1,6 +1,6 @@
 package id.co.abdialidrus.simplenote.business.datasource.cache.category
 
-import id.co.abdialidrus.simplenote.business.domain.Category
+import id.co.abdialidrus.simplenote.business.domain.model.Category
 import id.co.abdialidrus.simplenote.business.domain.util.DomainMapper
 
 class CategoryEntityMapper: DomainMapper<CategoryEntity, Category> {
